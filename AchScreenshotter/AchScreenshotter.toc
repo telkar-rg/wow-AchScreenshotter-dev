@@ -1,9 +1,11 @@
 ## Author: Blamdarot
-## Interface: 30300
-## SavedVariablesPerCharacter: AS_settings
+## eMail: blamdarot@yahoo.com
+## Interface: 40000
+## SavedVariablesPerCharacter: AS_settings, AS_testing
 ## Title: Achievement Screenshotter
-## Version: 3.1
-AS_constants.lua
-AS_options.lua
+## URL: http://www.facebook.com/pages/Achievement-Screenshotter/107953299272577
+## Version: 4.0ALPHA
+Blam_AS_constants.lua
+Blam_AS_options.lua
 AchScreenshotter.lua
 AchScreenshotter.xml

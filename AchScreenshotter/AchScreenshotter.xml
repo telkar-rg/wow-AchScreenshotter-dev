@@ -1,6 +1,6 @@
-﻿<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="AS_constants.lua" />
-	<Script file="AS_options.lua" />
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Blam_AS_constants.lua" />
+	<Script file="Blam_AS_options.lua" />
 	<Script file="AchScreenshotter.lua" />
 	<Frame name="AS_Options_Panel">
 		<Frames>
@@ -69,7 +69,55 @@
 						</FontString>
 					</Layer>
 				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_uncheck_exalted_only();</OnClick>
+				</Scripts>
 			</CheckButton>
+			<CheckButton name="AS_check_exalted_only" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_Reps" relativePoint="BOTTOMRIGHT" />
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_exalted_only" inherits="GameFontNormal" text="Screenshot Exalted Milestones Only" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_exalted_only" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_check_reps();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!--<CheckButton name="AS_check_boss_kills" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_Reps" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="-15" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_boss_kills" inherits="GameFontNormal" text="Screenshot Raid Boss Kills" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_boss_kills" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>-->
 			<CheckButton name="AS_check_hideUI" inherits="UICheckButtonTemplate" text="CheckButton2">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_Options_Panel" relativePoint="TOPLEFT">
@@ -83,7 +131,7 @@
 								<AbsDimension x="295" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_hideUI" relativePoint="TOPRIGHT">
+								- <Anchor point="TOPLEFT" relativeTo="AS_check_hideUI" relativePoint="TOPRIGHT">
 									<Offset x="0" y="-7" />
 								</Anchor>
 							</Anchors>
@@ -117,7 +165,7 @@
 					<OnClick>AS_auto_uncheck_bg_wins_only();</OnClick>
 				</Scripts>
 			</CheckButton>
-			<!--<CheckButton name="AS_check_arenas" inherits="UICheckButtonTemplate" text="CheckButton3">
+			<!-- <CheckButton name="AS_check_arenas" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_check_bgs" relativePoint="BOTTOMLEFT">
 						<Offset x="0" y="-40" />
@@ -141,7 +189,8 @@
 				<Scripts>
 					<OnClick>AS_auto_uncheck_arena_wins_only();</OnClick>
 				</Scripts>
-			</CheckButton>-->
+			</CheckButton>
+  -->
 			<CheckButton name="AS_check_bgs_wins_only" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_check_bgs" relativePoint="BOTTOMRIGHT" />
@@ -165,7 +214,7 @@
 					<OnClick>AS_auto_check_bgs();</OnClick>
 				</Scripts>
 			</CheckButton>
-			<!-- <CheckButton name="AS_check_arenas_wins_only" inherits="UICheckButtonTemplate" text="CheckButton3">
+			- <!--  <CheckButton name="AS_check_arenas_wins_only" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_check_arenas" relativePoint="BOTTOMRIGHT" />
 				</Anchors>
@@ -187,7 +236,8 @@
 				<Scripts>
 					<OnClick>AS_auto_check_arenas();</OnClick>
 				</Scripts>
-			</CheckButton> -->
+			</CheckButton> 
+  -->
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
