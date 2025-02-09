@@ -1,7 +1,9 @@
 ## Author: Blamdarot
-## Interface: 30200
-## SavedVariables: AS_ss_achs, AS_ss_levels, AS_ss_reps, AS_hideui
+## Interface: 30300
+## SavedVariablesPerCharacter: AS_settings
 ## Title: Achievement Screenshotter
-## Version: 3.0
+## Version: 3.1
+AS_constants.lua
+AS_options.lua
 AchScreenshotter.lua
 AchScreenshotter.xml

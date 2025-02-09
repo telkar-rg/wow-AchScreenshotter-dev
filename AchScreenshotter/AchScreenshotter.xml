@@ -1,52 +1,13 @@
 ﻿<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="AS_constants.lua" />
+	<Script file="AS_options.lua" />
 	<Script file="AchScreenshotter.lua" />
-	<Frame name="AS_Options_Frame" inherits="" hidden="true" parent="UIParent">
-		<Size>
-			<AbsDimension x="335" y="216" />
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativePoint="CENTER">
-				<Offset x="-1" y="0" />
-			</Anchor>
-		</Anchors>
-		<TitleRegion setAllPoints="true">
-			<Size>
-				<AbsDimension x="0" y="30" />
-			</Size>
-			<Anchors>
-				<Anchor point="TOPLEFT" />
-				<Anchor point="TOPRIGHT" />
-			</Anchors>
-		</TitleRegion>
-		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
-			<BackgroundInsets>
-				<AbsInset left="11" right="12" top="12" bottom="11" />
-			</BackgroundInsets>
-			<TileSize>
-				<AbsValue val="32" />
-			</TileSize>
-			<EdgeSize>
-				<AbsValue val="32" />
-			</EdgeSize>
-		</Backdrop>
+	<Frame name="AS_Options_Panel">
 		<Frames>
-			<Button name="AS_button_close" inherits="UIPanelCloseButton" parent="AS_Options_Frame" toplevel="true" enableMouse="true" text="">
-				<Size>
-					<AbsDimension x="35" y="35" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPRIGHT" relativeTo="AS_Options_Frame" relativePoint="TOPRIGHT">
-						<Offset x="-5" y="-5" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>AS_Close_Options();</OnClick>
-				</Scripts>
-			</Button>
 			<CheckButton name="AS_check_Achs" inherits="UICheckButtonTemplate" text="CheckButton1">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="AS_Options_Frame" relativePoint="TOPLEFT">
-						<Offset x="15" y="-65" />
+					<Anchor point="TOPLEFT" relativeTo="AS_Options_Panel" relativePoint="TOPLEFT">
+						<Offset x="15" y="-115" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -67,8 +28,8 @@
 			</CheckButton>
 			<CheckButton name="AS_check_Levels" inherits="UICheckButtonTemplate" text="CheckButton2">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="AS_Options_Frame" relativePoint="TOPLEFT">
-						<Offset x="15" y="-90" />
+					<Anchor point="TOPLEFT" relativeTo="AS_check_Achs" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="-10" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -89,8 +50,8 @@
 			</CheckButton>
 			<CheckButton name="AS_check_Reps" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="AS_Options_Frame" relativePoint="TOPLEFT">
-						<Offset x="15" y="-115" />
+					<Anchor point="TOPLEFT" relativeTo="AS_check_Levels" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="-15" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -111,8 +72,8 @@
 			</CheckButton>
 			<CheckButton name="AS_check_hideUI" inherits="UICheckButtonTemplate" text="CheckButton2">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="AS_Options_Frame" relativePoint="TOPLEFT">
-						<Offset x="15" y="-140" />
+					<Anchor point="TOPLEFT" relativeTo="AS_Options_Panel" relativePoint="TOPLEFT">
+						<Offset x="15" y="-55" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -131,6 +92,102 @@
 					</Layer>
 				</Layers>
 			</CheckButton>
+			<CheckButton name="AS_check_bgs" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_Reps" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="-20" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_bgs" inherits="GameFontNormal" text="Screenshot Battleground Endings" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_bgs" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_uncheck_bg_wins_only();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!--<CheckButton name="AS_check_arenas" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_bgs" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="-40" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_arenas" inherits="GameFontNormal" text="Screenshot Arena Endings" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_arenas" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_uncheck_arena_wins_only();</OnClick>
+				</Scripts>
+			</CheckButton>-->
+			<CheckButton name="AS_check_bgs_wins_only" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_bgs" relativePoint="BOTTOMRIGHT" />
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_bgs_wins_only" inherits="GameFontNormal" text="Screenshot Wins Only" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_bgs_wins_only" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_check_bgs();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!-- <CheckButton name="AS_check_arenas_wins_only" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_arenas" relativePoint="BOTTOMRIGHT" />
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_arenas_wins_only" inherits="GameFontNormal" text="Screenshot Wins Only" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_arenas_wins_only" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_check_arenas();</OnClick>
+				</Scripts>
+			</CheckButton> -->
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
@@ -139,17 +196,9 @@
 						<AbsDimension x="270" y="20" />
 					</Size>
 					<Anchors>
-						<Anchor point="CENTER" relativeTo="AS_Options_Frame" relativePoint="CENTER">
-							<Offset x="0" y="80" />
+						<Anchor point="TOP" relativeTo="AS_Options_Panel" relativePoint="TOP">
+							<Offset x="0" y="-5" />
 						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="AS_fs_options" inherits="GameFontNormal" text="Options">
-					<Size>
-						<AbsDimension x="270" y="20" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOP" relativeTo="AS_fs_title" relativePoint="BOTTOM" />
 					</Anchors>
 				</FontString>
 				<FontString name="AS_option_fs_myName" inherits="GameFontNormal" text="by Blamdarot" justifyV="BOTTOM" justifyH="RIGHT">
@@ -157,19 +206,17 @@
 						<AbsDimension x="90" y="20" />
 					</Size>
 					<Anchors>
-						<Anchor point="BOTTOMRIGHT" relativeTo="AS_Options_Frame" relativePoint="BOTTOMRIGHT">
-							<Offset x="-10" y="10" />
+						<Anchor point="BOTTOMRIGHT" relativeTo="AS_Options_Panel" relativePoint="BOTTOMRIGHT">
+							<Offset x="-7" y="5" />
 						</Anchor>
 					</Anchors>
-					<FontHeight>
-						<AbsValue val="8" />
-					</FontHeight>
 				</FontString>
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnLoad>AchScreens_OnLoad();</OnLoad>
+			<OnLoad>AchScreens_OnLoad(self);</OnLoad>
 			<OnEvent>AchScreens_OnEvent(self,event,...);</OnEvent>
+			<OnShow>AS_Open_Options();</OnShow>
 		</Scripts>
 	</Frame>
 </Ui>

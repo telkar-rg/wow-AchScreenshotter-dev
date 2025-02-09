@@ -36,23 +36,23 @@ end
 -- END OF DO NOT MODIFY!!
 -------------------------------------------------------------
 
-local AS_MOD_NAME = "Achievement Screenshotter";
-local AS_MOD_VERSION = "3.0.3";
-local AS_DEBUG = false;
+local AS_player_faction_id;
+AS_settings = {};
 
---local AS_testing = false;
-
-function AchScreens_OnLoad( )
+function AchScreens_OnLoad(panel)
 	if( AS_DEBUG ) then
 		print( "AchScreens_OnLoad()... ");
 	end
 	
 	this:RegisterEvent( "ADDON_LOADED");		-- for retrieving the saved variables
+	this:RegisterEvent( "PLAYER_LOGOUT" );		-- for updating the mod version in the saved variables table
 	this:RegisterEvent( "ACHIEVEMENT_EARNED" ); -- for achievement screenshots
 	this:RegisterEvent( "PLAYER_LEVEL_UP" );    -- for leveling up screenshots
 	this:RegisterEvent( "CHAT_MSG_SYSTEM" );    -- for reputation milestone screenshots
-
-	--this:RegisterEvent( "UNIT_SPELLCAST_SUCCEEDED" ); -- for testing only
+	this:RegisterEvent( "UPDATE_BATTLEFIELD_STATUS" ); -- for end of bgs and arenas
+	--this:RegisterEvent( "COMBAT_LOG_EVENT_UNFILTERED" ); -- for boss kills
+	
+	AS_config_options( panel );
 end
 
 function AchScreens_OnEvent( self, event, ... )
@@ -61,38 +61,115 @@ function AchScreens_OnEvent( self, event, ... )
 	end
 
 	if( event == "ADDON_LOADED" ) then
-		if( select(1,...) == "AchScreenshotter" ) then
-			print( AS_MOD_NAME .. " v." .. AS_MOD_VERSION .. " has loaded." );
-			if( AS_ss_achs == nil ) then
-				AS_ss_achs = true;
-				AS_ss_levels = true;
-				AS_ss_reps = true;
-			end
-			-- must be seperate because old users will have saved settings already
-			if( AS_hideui == nil ) then
-				AS_hideui = false;
-			end
-		end
-	elseif( event == "ACHIEVEMENT_EARNED" and AS_ss_achs ) then
-		AchScreens__wait( 2, Screenshot, ... );
-    elseif( event == "PLAYER_LEVEL_UP" and AS_ss_levels ) then
-		AS_take_screenshot(1);
-	elseif( event == "CHAT_MSG_SYSTEM" and AS_ss_reps ) then
-		if( string.find(select(1,...), "You are now")
-		and string.find(select(1,...), "with") ) then
-			AS_take_screenshot(1);
-		end
-	-- elseif( event == "UNIT_SPELLCAST_SUCCEEDED" ) then -- for debugging only
-		-- print( "SPELLCAST SUCCEEDED" );
-		-- AS_take_screenshot(2);
+		AS_addon_loaded( select(1,...) );
+	elseif( event == "PLAYER_LOGOUT" ) then
+		AS_player_logout();
+	elseif( event == "ACHIEVEMENT_EARNED" and AS_settings.AS_ss_achs ) then
+		AS_achievement_earned();
+    elseif( event == "PLAYER_LEVEL_UP" and AS_settings.AS_ss_levels ) then
+		AS_player_level_up();
+	elseif( event == "CHAT_MSG_SYSTEM" and AS_settings.AS_ss_reps ) then
+		AS_chat_msg_system( select(1,...) );
+	elseif( event == "UPDATE_BATTLEFIELD_STATUS" and (AS_settings.AS_ss_bgs or AS_settings.AS_ss_arenas) ) then
+		AS_update_battlefield_status();
+	--elseif( event == "COMBAT_LOG_EVENT_UNFILTERED" ) then
+		--AS_combat_log_event( select(2,...), select(6,...) );
 	end
 end
 
+function AS_addon_loaded( modName )
+	if( modName == AS_MOD_NAME_NO_SPACES ) then
+		print( AS_MOD_NAME .. " v." .. AS_MOD_VERSION .. " has loaded." );
+		
+		for k, v in pairs(AS_DEFAULT_SETTINGS) do
+			if not AS_settings[k] then
+				AS_settings[k] = v;
+			end
+		end
+		
+		if( UnitFactionGroup("player") == "Horde" ) then
+			AS_player_faction_id = AS_HORDE_ID;
+		else
+			AS_player_faction_id = AS_ALLIANCE_ID;
+		end
+	end
+end
+
+function AS_player_logout()
+	AS_settings.AS_saved_mod_version = AS_MOD_VERSION;
+end
+
+function AS_achievement_earned()
+	AS_take_screenshot(1);
+end
+
+function AS_player_level_up()
+	AS_take_screenshot(1);
+end
+
+function AS_chat_msg_system( msg )
+	if( string.find( msg, "You are now")
+	and string.find( msg, "with") ) then
+		AS_take_screenshot(1);
+	end
+end
+
+function AS_update_battlefield_status()
+	local winner = GetBattlefieldWinner();
+	if( AS_DEBUG ) then
+		print( " winner = ", winner );
+		print( " UnitFactionGroup() = ", UnitFactionGroup("player") );
+		print( " AS_ss_bgs_wins_only = ", AS_settings.AS_ss_bgs_wins_only );
+	end
+	
+	if( winner ~= nil ) then
+		if( IsActiveBattlefieldArena() ) then
+			if( AS_settings.AS_ss_arenas and (not AS_settings.AS_ss_arenas_wins_only) ) then
+				AS_take_screenshot(1);
+			elseif( AS_settings.AS_ss_arenas_wins_only and winner == get_players_team_index() ) then
+				AS_take_screenshot(1);
+			end
+		else -- they are in a battleground
+			if( AS_settings.AS_ss_bgs and (not AS_settings.AS_ss_bgs_wins_only) ) then
+				AS_take_screenshot(1);
+			elseif( AS_settings.AS_ss_bgs_wins_only and winner == AS_player_faction_id ) then
+				AS_take_screenshot(1);
+			end
+		end
+	end
+end
+
+function get_players_team_index()
+	local greenTeamName = GetBattlefieldTeamInfo(0);
+	for i = 0, AS_MAX_NUM_ARENA_TEAMS do
+		if( greenTeamName == GetArenaTeam(i) ) then
+			return 0;
+		end
+	end
+	return 1;
+end
+
+-- function AS_combat_log_event( eventType, destGUID )
+	-- --print( "combat_log_event" );
+	-- if( eventType == "UNIT_DIED" ) then
+		-- print( "UNIT_DIED" );
+		-- print( "GUID == ", destGUID );
+		-- print( "UnitLevel() == ", UnitLevel(destGUID) ); -- returns 0 
+		-- print( "UnitClassification() == ", UnitClassification(destGUID) );
+		-- print( "UnitCreatureType() == " , UnitCreatureType(destGUID) );-- returns nil
+		-- if( UnitLevel(destGUID) == -1 ) then
+			-- print( "UnitLevel() == -1" );
+		-- elseif( UnitClassification(destGUID) == "worldboss" ) then
+			-- AS_take_screenshot(0);
+		-- end
+	-- end
+-- end
+
 function AS_take_screenshot(delay)
-	if( AS_hideui ) then
+	if( AS_settings.AS_hideui ) then
 		AchScreens__wait( delay, AS_myHide );
 		AchScreens__wait( delay, Screenshot );
-		-- UIParent:Show(); -- Doesn't work. I suspect it is related to the delay
+		--UIParent:Show(); -- Doesn't work. I suspect it is related to the delay
 		-- funciton I'm using. Until I find a work around, the user will have to
 		-- press Esc after the screenshot is taken.
 	else
@@ -117,51 +194,7 @@ function SlashCmdList.SCREENSHOTTER( msg, editbox )
 	if( AS_DEBUG ) then
 		print( "AS_slash_handler()..." );
 	end
-	
-	-- if( msg == "test" ) then
-		-- if( AS_testing ) then
-			-- this:UnregisterEvent( "UNIT_SPELLCAST_SUCCEEDED" );
-			-- AS_testing = false;
-			-- print( "Screenshots will not be taken on spell casts." );
-		-- else
-			-- this:RegisterEvent( "UNIT_SPELLCAST_SUCCEEDED" ); 
-			-- AS_testing = true;
-			-- print( "Screenshots will be taken on spell casts." );
-		-- end
-	-- else
-		AS_Open_Options();
-	-- end
+
+	InterfaceOptionsFrame_OpenToCategory(AS_Options_Panel);
 end
-----------------------------------------------------------
--- END OF SLASH COMMAND CODE
 -----------------------------------------------------------
-function AS_Open_Options()
-	if( AS_DEBUG ) then
-		print( "AS_Open_Options()..." );
-	end
-
-	AS_fs_title:SetText( AS_MOD_NAME .. " v." .. AS_MOD_VERSION );
-	AS_check_Achs:SetChecked(AS_ss_achs);
-	AS_check_Levels:SetChecked(AS_ss_levels);
-	AS_check_Reps:SetChecked(AS_ss_reps);
-	AS_check_hideUI:SetChecked(AS_hideui);
-	
-	AS_Options_Frame:Show();
-end
-
-function AS_Close_Options()
-	if( AS_DEBUG ) then
-		print( "AS_Close_Options()... " );
-	end
-	
-	AS_Options_Frame:Hide();
-	
-	AS_ss_achs = AS_check_Achs:GetChecked();
-	AS_ss_levels = AS_check_Levels:GetChecked();
-	AS_ss_reps = AS_check_Reps:GetChecked();
-	AS_hideui = AS_check_hideUI:GetChecked();
-	
-	if( AS_hideui ) then
-		print( "Achievement Screenshotter: press Esc to show the UI after the screenshot is taken." );
-	end
-end
