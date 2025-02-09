@@ -37,12 +37,8 @@ end
 -------------------------------------------------------------
 
 local AS_MOD_NAME = "Achievement Screenshotter";
-local AS_MOD_VERSION = "3.0";
+local AS_MOD_VERSION = "3.0.1";
 local AS_DEBUG = false;
-
---AS_ss_achs = true;
---AS_ss_levels = true;
---AS_ss_reps = true;
 
 function AchScreens_OnLoad( )
 	if( AS_DEBUG ) then
@@ -53,8 +49,8 @@ function AchScreens_OnLoad( )
 	this:RegisterEvent( "ACHIEVEMENT_EARNED" ); -- for achievement screenshots
 	this:RegisterEvent( "PLAYER_LEVEL_UP" );    -- for leveling up screenshots
 	this:RegisterEvent( "CHAT_MSG_SYSTEM" );    -- for reputation milestone screenshots
+	
 	print( AS_MOD_NAME, AS_MOD_VERSION, ": Loaded" );
-
 end
 
 function AchScreens_OnEvent( self, event, ... )
@@ -72,12 +68,7 @@ function AchScreens_OnEvent( self, event, ... )
 		AchScreens__wait( 2, Screenshot, ... );
     elseif( event == "PLAYER_LEVEL_UP" and AS_ss_levels ) then
 		AchScreens__wait( 1, Screenshot, ... );
-	elseif( event == "CHAT_MSG_SYSTEM" and AS_ss_reps ) then -- BUG: Takes screenshot upon login.
-		--if( AS_DEBUG ) then
-		--	print( "... arg1 = ", select( 1, ... ) );
-		--	print( "... string.find(1) = ", string.find(select(1,...), "You are now" ));
-		--	print( "... string.find(2) = ", string.find(select(1,...), "with") );
-		--end
+	elseif( event == "CHAT_MSG_SYSTEM" and AS_ss_reps ) then
 		if( string.find(select(1,...), "You are now")
 			and string.find(select(1,...), "with") ) then
 			AchScreens__wait( 1, Screenshot, ... );
@@ -88,23 +79,31 @@ end
 -----------------------------------------------------------
 -- Slash Command Code
 -----------------------------------------------------------
-SLASH_SCREENSHOTTER1 = '/as';
+SLASH_SCREENSHOTTER1, SLASH_SCREENSHOTTER2 = '/as', '/screenshotter';
 SlashCmdList["SCREENSHOTTER"] = handler;
 function SlashCmdList.SCREENSHOTTER( msg, editbox )
 	if( AS_DEBUG ) then
 		print( "AS_slash_handler()..." );
 	end
 	
-	AS_Options_Frame:Show();
-	AS_check_Achs:SetChecked(AS_ss_achs);
-	AS_check_Levels:SetChecked(AS_ss_levels);
-	AS_check_Reps:SetChecked(AS_ss_reps);
+	AS_Open_Options();
 	
 end
 ----------------------------------------------------------
 -- END OF SLASH COMMAND CODE
 -----------------------------------------------------------
+function AS_Open_Options()
+	if( AS_DEBUG ) then
+		print( "AS_Open_Options()..." );
+	end
 
+	AS_fs_title:SetText( AS_MOD_NAME .. "v." .. AS_MOD_VERSION );
+	AS_check_Achs:SetChecked(AS_ss_achs);
+	AS_check_Levels:SetChecked(AS_ss_levels);
+	AS_check_Reps:SetChecked(AS_ss_reps);
+	
+	AS_Options_Frame:Show();
+end
 
 function AS_Close_Options()
 	if( AS_DEBUG ) then
@@ -116,16 +115,4 @@ function AS_Close_Options()
 	AS_ss_achs = AS_check_Achs:GetChecked();
 	AS_ss_levels = AS_check_Levels:GetChecked();
 	AS_ss_reps = AS_check_Reps:GetChecked();
-	
-	AS_Save_Settings();
-	
-end
-
-function AS_Save_Settings()
-	if( AS_DEBUG ) then
-		print( "AS_Save_Settings()..." );
-	end
-	
-	-- TODO
-
 end

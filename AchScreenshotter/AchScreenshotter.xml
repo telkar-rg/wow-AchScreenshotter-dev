@@ -1,13 +1,11 @@
 ﻿<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="Frame.lua" />
+	<Script file="AchScreenshotter.lua" />
 	<Frame name="AS_Options_Frame" inherits="" hidden="true">
 		<Size>
 			<AbsDimension x="336" y="216" />
 		</Size>
 		<Anchors>
-			<Anchor point="CENTER" relativePoint="CENTER">
-				<Offset x="0" y="-3" />
-			</Anchor>
+			<Anchor point="CENTER" relativePoint="CENTER" />
 		</Anchors>
 		<TitleRegion setAllPoints="true">
 			<Size>
@@ -30,10 +28,23 @@
 			</EdgeSize>
 		</Backdrop>
 		<Frames>
+			<Button name="AS_button_close" inherits="UIPanelCloseButton" parent="AS_Options_Frame" toplevel="true" enableMouse="true" text="">
+				<Size>
+					<AbsDimension x="35" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="AS_Options_Frame" relativePoint="TOPRIGHT">
+						<Offset x="-5" y="-5" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AS_Close_Options();</OnClick>
+				</Scripts>
+			</Button>
 			<CheckButton name="AS_check_Achs" inherits="UICheckButtonTemplate" text="CheckButton1">
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="14" y="-61" />
+						<Offset x="14" y="-71" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -55,7 +66,7 @@
 			<CheckButton name="AS_check_Levels" inherits="UICheckButtonTemplate" text="CheckButton2">
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="14" y="-99" />
+						<Offset x="14" y="-109" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -77,7 +88,7 @@
 			<CheckButton name="AS_check_Reps" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="14" y="-137" />
+						<Offset x="14" y="-147" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -99,13 +110,23 @@
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="AS_fs_Title" inherits="GameFontNormal" text="Screenshotter Options">
+				<FontString name="AS_fs_title" inherits="GameFontNormal" text="">
 					<Size>
-						<AbsDimension x="175" y="20" />
+						<AbsDimension x="270" y="20" />
 					</Size>
 					<Anchors>
 						<Anchor point="CENTER" relativeTo="AS_Options_Frame" relativePoint="CENTER">
 							<Offset x="0" y="80" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="AS_options_fs" inherits="GameFontNormal" text="Options">
+					<Size>
+						<AbsDimension x="270" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="AS_fs_title" relativePoint="BOTTOM">
+							<Offset x="0" y="0" />
 						</Anchor>
 					</Anchors>
 				</FontString>
@@ -116,15 +137,4 @@
 			<OnEvent>AchScreens_OnEvent(self,event,...);</OnEvent>
 		</Scripts>
 	</Frame>
-	<Button name="AS_button_close" inherits="UIPanelCloseButton" parent="AS_Options_Frame" toplevel="true" enableMouse="true" text="">
-		<Size>
-			<AbsDimension x="35" y="35" />
-		</Size>
-		<Anchors>
-			<Anchor point="TOPRIGHT" relativeTo="AS_Options_Frame" relativePoint="TOPRIGHT" />
-		</Anchors>
-		<Scripts>
-			<OnClick>AS_Close_Options();</OnClick>
-		</Scripts>
-	</Button>
 </Ui>

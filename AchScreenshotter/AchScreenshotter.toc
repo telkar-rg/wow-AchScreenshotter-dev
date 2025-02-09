@@ -1,8 +1,8 @@
 ## Title: Achievement Screenshotter
-## Version: 1.1.1
+## Version: 3.0
 ## Author: Blamdarot
-## Interface: 30103
-##SavedVariables: AS_ss_achs, AS_ss_levels, AS_ss_reps
+## Interface: 30100
+## SavedVariables: AS_ss_achs, AS_ss_levels, AS_ss_reps
 
 AchScreenshotter.lua
 AchScreenshotter.xml
