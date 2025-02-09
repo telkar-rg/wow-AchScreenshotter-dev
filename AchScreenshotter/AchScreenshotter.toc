@@ -1,0 +1,7 @@
+## Title: Achievement Screenshotter
+## Version: 1.1.1
+## Author: Blamdarot
+## Interface: 30103
+
+AchScreenshotter.lua
+AchScreenshotter.xml
