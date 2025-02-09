@@ -37,24 +37,95 @@ end
 -------------------------------------------------------------
 
 local AS_MOD_NAME = "Achievement Screenshotter";
-local AS_MOD_VERSION = "2.0";
+local AS_MOD_VERSION = "3.0";
+local AS_DEBUG = false;
+
+--AS_ss_achs = true;
+--AS_ss_levels = true;
+--AS_ss_reps = true;
 
 function AchScreens_OnLoad( )
-
-	this:RegisterEvent( "ACHIEVEMENT_EARNED" );
-	this:RegisterEvent( "PLAYER_LEVEL_UP" );
+	if( AS_DEBUG ) then
+		print( "AchScreens_OnLoad()... ");
+	end
+	
+	this:RegisterEvent( "ADDON_LOADED");		-- for retrieving the saved variables
+	this:RegisterEvent( "ACHIEVEMENT_EARNED" ); -- for achievement screenshots
+	this:RegisterEvent( "PLAYER_LEVEL_UP" );    -- for leveling up screenshots
+	this:RegisterEvent( "CHAT_MSG_SYSTEM" );    -- for reputation milestone screenshots
 	print( AS_MOD_NAME, AS_MOD_VERSION, ": Loaded" );
 
 end
 
 function AchScreens_OnEvent( self, event, ... )
-	
-	if( event == "ACHIEVEMENT_EARNED" ) then
+	if( AS_DEBUG ) then
+		print( "AchScreens_OnEvent() ... event = ", event );
+	end
+
+	if( event == "ADDON_LOADED" ) then
+		if( AS_ss_achs == nil ) then
+			AS_ss_achs = true;
+			AS_ss_levels = true;
+			AS_ss_reps = true;
+		end
+	elseif( event == "ACHIEVEMENT_EARNED" and AS_ss_achs ) then
 		AchScreens__wait( 2, Screenshot, ... );
-	elseif( event == "PLAYER_LEVEL_UP" ) then
+    elseif( event == "PLAYER_LEVEL_UP" and AS_ss_levels ) then
 		AchScreens__wait( 1, Screenshot, ... );
-	else
-		message( "Achievement Screenshotter is receiving events it does not know how to handle. Please contact the author: blamdarot@yahoo.com" );
+	elseif( event == "CHAT_MSG_SYSTEM" and AS_ss_reps ) then -- BUG: Takes screenshot upon login.
+		--if( AS_DEBUG ) then
+		--	print( "... arg1 = ", select( 1, ... ) );
+		--	print( "... string.find(1) = ", string.find(select(1,...), "You are now" ));
+		--	print( "... string.find(2) = ", string.find(select(1,...), "with") );
+		--end
+		if( string.find(select(1,...), "You are now")
+			and string.find(select(1,...), "with") ) then
+			AchScreens__wait( 1, Screenshot, ... );
+		end
+	end
+end
+
+-----------------------------------------------------------
+-- Slash Command Code
+-----------------------------------------------------------
+SLASH_SCREENSHOTTER1 = '/as';
+SlashCmdList["SCREENSHOTTER"] = handler;
+function SlashCmdList.SCREENSHOTTER( msg, editbox )
+	if( AS_DEBUG ) then
+		print( "AS_slash_handler()..." );
 	end
 	
+	AS_Options_Frame:Show();
+	AS_check_Achs:SetChecked(AS_ss_achs);
+	AS_check_Levels:SetChecked(AS_ss_levels);
+	AS_check_Reps:SetChecked(AS_ss_reps);
+	
+end
+----------------------------------------------------------
+-- END OF SLASH COMMAND CODE
+-----------------------------------------------------------
+
+
+function AS_Close_Options()
+	if( AS_DEBUG ) then
+		print( "AS_Close_Options()... " );
+	end
+	
+	AS_Options_Frame:Hide();
+	
+	AS_ss_achs = AS_check_Achs:GetChecked();
+	AS_ss_levels = AS_check_Levels:GetChecked();
+	AS_ss_reps = AS_check_Reps:GetChecked();
+	
+	AS_Save_Settings();
+	
+end
+
+function AS_Save_Settings()
+	if( AS_DEBUG ) then
+		print( "AS_Save_Settings()..." );
+	end
+	
+	-- TODO
+
 end

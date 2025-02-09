@@ -1,12 +1,23 @@
 ﻿<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="Frame.lua" />
-	<Frame name="Frame1" hidden="true">
+	<Frame name="AS_Options_Frame" inherits="" hidden="true">
 		<Size>
-			<AbsDimension x="200" y="200" />
+			<AbsDimension x="336" y="216" />
 		</Size>
 		<Anchors>
-			<Anchor point="TOPLEFT" />
+			<Anchor point="CENTER" relativePoint="CENTER">
+				<Offset x="0" y="-3" />
+			</Anchor>
 		</Anchors>
+		<TitleRegion setAllPoints="true">
+			<Size>
+				<AbsDimension x="0" y="30" />
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" />
+				<Anchor point="TOPRIGHT" />
+			</Anchors>
+		</TitleRegion>
 		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
 			<BackgroundInsets>
 				<AbsInset left="11" right="12" top="12" bottom="11" />
@@ -18,9 +29,102 @@
 				<AbsValue val="32" />
 			</EdgeSize>
 		</Backdrop>
+		<Frames>
+			<CheckButton name="AS_check_Achs" inherits="UICheckButtonTemplate" text="CheckButton1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="14" y="-61" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_Achs" inherits="GameFontNormal" text="Screenshot Achievements" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_Achs" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="AS_check_Levels" inherits="UICheckButtonTemplate" text="CheckButton2">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="14" y="-99" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_Levels" inherits="GameFontNormal" text="Screenshot Level Ups" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_Levels" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="AS_check_Reps" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="14" y="-137" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_Reps" inherits="GameFontNormal" text="Screenshot Reputation Milestones" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_Reps" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+		</Frames>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="AS_fs_Title" inherits="GameFontNormal" text="Screenshotter Options">
+					<Size>
+						<AbsDimension x="175" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="AS_Options_Frame" relativePoint="CENTER">
+							<Offset x="0" y="80" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
 		<Scripts>
 			<OnLoad>AchScreens_OnLoad();</OnLoad>
 			<OnEvent>AchScreens_OnEvent(self,event,...);</OnEvent>
 		</Scripts>
 	</Frame>
+	<Button name="AS_button_close" inherits="UIPanelCloseButton" parent="AS_Options_Frame" toplevel="true" enableMouse="true" text="">
+		<Size>
+			<AbsDimension x="35" y="35" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="AS_Options_Frame" relativePoint="TOPRIGHT" />
+		</Anchors>
+		<Scripts>
+			<OnClick>AS_Close_Options();</OnClick>
+		</Scripts>
+	</Button>
 </Ui>
