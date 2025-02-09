@@ -120,15 +120,18 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="AS_options_fs" inherits="GameFontNormal" text="Options">
+				<FontString name="AS_option_fs_myName" inherits="GameFontNormal" text="by Blamdarot" justifyV="BOTTOM" justifyH="RIGHT">
 					<Size>
-						<AbsDimension x="270" y="20" />
+						<AbsDimension x="90" y="20" />
 					</Size>
 					<Anchors>
-						<Anchor point="TOP" relativeTo="AS_fs_title" relativePoint="BOTTOM">
-							<Offset x="0" y="0" />
+						<Anchor point="BOTTOMRIGHT" relativeTo="AS_Options_Frame" relativePoint="BOTTOMRIGHT">
+							<Offset x="-10" y="10" />
 						</Anchor>
 					</Anchors>
+					<FontHeight>
+						<AbsValue val="8" />
+					</FontHeight>
 				</FontString>
 			</Layer>
 		</Layers>

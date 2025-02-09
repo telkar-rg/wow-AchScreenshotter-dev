@@ -37,7 +37,7 @@ end
 -------------------------------------------------------------
 
 local AS_MOD_NAME = "Achievement Screenshotter";
-local AS_MOD_VERSION = "3.0.1";
+local AS_MOD_VERSION = "3.0.2";
 local AS_DEBUG = false;
 
 function AchScreens_OnLoad( )
@@ -49,8 +49,6 @@ function AchScreens_OnLoad( )
 	this:RegisterEvent( "ACHIEVEMENT_EARNED" ); -- for achievement screenshots
 	this:RegisterEvent( "PLAYER_LEVEL_UP" );    -- for leveling up screenshots
 	this:RegisterEvent( "CHAT_MSG_SYSTEM" );    -- for reputation milestone screenshots
-	
-	print( AS_MOD_NAME, AS_MOD_VERSION, ": Loaded" );
 end
 
 function AchScreens_OnEvent( self, event, ... )
@@ -59,10 +57,13 @@ function AchScreens_OnEvent( self, event, ... )
 	end
 
 	if( event == "ADDON_LOADED" ) then
-		if( AS_ss_achs == nil ) then
-			AS_ss_achs = true;
-			AS_ss_levels = true;
-			AS_ss_reps = true;
+		if( select(1,...) == "AchScreenshotter" ) then
+			print( AS_MOD_NAME .. " v." .. AS_MOD_VERSION .. " has loaded." );
+			if( AS_ss_achs == nil ) then
+				AS_ss_achs = true;
+				AS_ss_levels = true;
+				AS_ss_reps = true;
+			end
 		end
 	elseif( event == "ACHIEVEMENT_EARNED" and AS_ss_achs ) then
 		AchScreens__wait( 2, Screenshot, ... );
