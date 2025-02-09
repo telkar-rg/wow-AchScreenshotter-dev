@@ -299,7 +299,7 @@
 				</FontString>
 				<FontString name="AS_option_fs_myName" inherits="GameFontNormal" text="by Blamdarot, Telkar-RG" justifyV="BOTTOM" justifyH="RIGHT">
 					<Size>
-						<AbsDimension x="90" y="20" />
+						<AbsDimension x="200" y="20" />
 					</Size>
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT" relativeTo="AS_Options_Panel" relativePoint="BOTTOMRIGHT">
