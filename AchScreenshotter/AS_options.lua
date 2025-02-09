@@ -49,6 +49,11 @@ function AS_Close_Options()
 	AS_settings.AS_ss_arenas = AS_check_arenas:GetChecked();
 	AS_settings.AS_ss_arenas_wins_only = AS_check_arenas_wins_only:GetChecked();
 	
+	AS_settings.AS_ss_soi_general = AS_check_ShardsOfIllusion:GetChecked()
+	AS_settings.AS_ss_soi_raid = AS_check_ShardsOfIllusion_sub_raid:GetChecked();
+	AS_settings.AS_ss_soi_lfg = AS_check_ShardsOfIllusion_sub_LFG:GetChecked();
+	AS_settings.AS_ss_soi_arena = AS_check_ShardsOfIllusion_sub_arena:GetChecked();
+	
 	if( AS_settngs.AS_hideui ) then
 		print( "Achievement Screenshotter: press Esc to show the UI after the screenshot is taken." );
 	end

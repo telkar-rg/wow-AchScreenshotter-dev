@@ -39,6 +39,18 @@ end
 local AS_player_faction_id;
 AS_settings = {};
 
+
+
+local LOCALE = GetLocale()
+local pattern_rep = FACTION_STANDING_CHANGED:gsub("%%%d?%$?s",".+")
+
+local TOKENS_SHARDS_MSG_GAINED = "^You receive (%d+) Shards of Illusion"
+if LOCALE == "deDE" then
+	TOKENS_SHARDS_MSG_GAINED = "^Ihr erhaltet (%d+) Splitter der Illusion"
+end
+
+
+
 function AchScreens_OnLoad(panel)
 	if( AS_DEBUG ) then
 		print( "AchScreens_OnLoad()... ");
@@ -68,7 +80,7 @@ function AchScreens_OnEvent( self, event, ... )
 		AS_achievement_earned();
     elseif( event == "PLAYER_LEVEL_UP" and AS_settings.AS_ss_levels ) then
 		AS_player_level_up();
-	elseif( event == "CHAT_MSG_SYSTEM" and AS_settings.AS_ss_reps ) then
+	elseif( event == "CHAT_MSG_SYSTEM" ) then
 		AS_chat_msg_system( select(1,...) );
 	elseif( event == "UPDATE_BATTLEFIELD_STATUS" and (AS_settings.AS_ss_bgs or AS_settings.AS_ss_arenas) ) then
 		AS_update_battlefield_status();
@@ -108,9 +120,20 @@ function AS_player_level_up()
 end
 
 function AS_chat_msg_system( msg )
-	if( string.find( msg, "You are now")
-	and string.find( msg, "with") ) then
+	if( AS_settings.AS_ss_reps and string.find( msg, pattern_rep) ) then
 		AS_take_screenshot(1);
+		return
+	end
+	
+	if (AS_settings.AS_ss_soi_general and string.find( msg, TOKENS_SHARDS_MSG_GAINED) ) then
+		local _, iType = GetInstanceInfo()
+		if AS_settings.AS_ss_soi_raid and iType=="raid" then
+			
+		elseif AS_settings.AS_ss_soi_lfg and iType=="party" then
+			
+		elseif AS_settings.AS_ss_soi_arena and iType=="arena" then
+			
+		end
 	end
 end
 

@@ -267,7 +267,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_ShardsOfIllusion_sub_arena" inherits="GameFontNormal" text="Arena Completion" justifyH="LEFT">
+						<FontString name="AS_fs_ShardsOfIllusion_sub_arena" inherits="GameFontNormal" text="Arena (experimental)" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="265" y="20" />
 							</Size>
