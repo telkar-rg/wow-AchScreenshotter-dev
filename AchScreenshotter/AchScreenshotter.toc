@@ -1,8 +1,10 @@
-## Author: Blamdarot
+## Title: Achievement Screenshotter (3.2.0)
+## Notes: Takes screenshots at significant ingame events
 ## Interface: 30300
+## Version: 3.2.0
+## Author: Blamdarot, Telkar-RG
 ## SavedVariablesPerCharacter: AS_settings
-## Title: Achievement Screenshotter
-## Version: 3.1
+
 AS_constants.lua
 AS_options.lua
 AchScreenshotter.lua

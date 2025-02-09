@@ -77,3 +77,52 @@ function AS_auto_uncheck_bg_wins_only()
 		AS_check_bgs_wins_only:SetChecked(false);
 	end
 end
+
+-- Telkar edit here
+function AS_auto_uncheck_shard_suboptions()
+	if( not AS_check_ShardsOfIllusion:GetChecked() ) then
+		AS_check_ShardsOfIllusion_sub_raid:SetChecked(false);
+		AS_check_ShardsOfIllusion_sub_LFG:SetChecked(false);
+		AS_check_ShardsOfIllusion_sub_arena:SetChecked(false);
+	elseif not (AS_check_ShardsOfIllusion_sub_raid:GetChecked() or 
+		AS_check_ShardsOfIllusion_sub_LFG:GetChecked() or 
+		AS_check_ShardsOfIllusion_sub_arena:GetChecked()
+	) then
+		AS_check_ShardsOfIllusion_sub_raid:SetChecked(true);
+		AS_check_ShardsOfIllusion_sub_LFG:SetChecked(true);
+		AS_check_ShardsOfIllusion_sub_arena:SetChecked(true);
+	end
+end
+
+function AS_auto_check_shard_sub_raid()
+	if( AS_check_ShardsOfIllusion_sub_raid:GetChecked() and not AS_check_ShardsOfIllusion:GetChecked() ) then
+		AS_check_ShardsOfIllusion:SetChecked(true);
+	elseif not (AS_check_ShardsOfIllusion_sub_raid:GetChecked() or 
+		AS_check_ShardsOfIllusion_sub_LFG:GetChecked() or 
+		AS_check_ShardsOfIllusion_sub_arena:GetChecked()
+	) then
+		AS_check_ShardsOfIllusion:SetChecked(false);
+	end
+end
+
+function AS_auto_check_shard_sub_LFG()
+	if( AS_check_ShardsOfIllusion_sub_LFG:GetChecked() and not AS_check_ShardsOfIllusion:GetChecked() ) then
+		AS_check_ShardsOfIllusion:SetChecked(true);
+	elseif not (AS_check_ShardsOfIllusion_sub_raid:GetChecked() or 
+		AS_check_ShardsOfIllusion_sub_LFG:GetChecked() or 
+		AS_check_ShardsOfIllusion_sub_arena:GetChecked()
+	) then
+		AS_check_ShardsOfIllusion:SetChecked(false);
+	end
+end
+
+function AS_auto_check_shard_sub_arena()
+	if( AS_check_ShardsOfIllusion_sub_arena:GetChecked() and not AS_check_ShardsOfIllusion:GetChecked() ) then
+		AS_check_ShardsOfIllusion:SetChecked(true);
+	elseif not (AS_check_ShardsOfIllusion_sub_raid:GetChecked() or 
+		AS_check_ShardsOfIllusion_sub_LFG:GetChecked() or 
+		AS_check_ShardsOfIllusion_sub_arena:GetChecked()
+	) then
+		AS_check_ShardsOfIllusion:SetChecked(false);
+	end
+end

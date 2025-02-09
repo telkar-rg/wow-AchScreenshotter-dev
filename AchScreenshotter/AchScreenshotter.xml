@@ -4,10 +4,32 @@
 	<Script file="AchScreenshotter.lua" />
 	<Frame name="AS_Options_Panel">
 		<Frames>
-			<CheckButton name="AS_check_Achs" inherits="UICheckButtonTemplate" text="CheckButton1">
+			<CheckButton name="AS_check_hideUI" inherits="UICheckButtonTemplate" text="CheckButton2">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_Options_Panel" relativePoint="TOPLEFT">
-						<Offset x="15" y="-115" />
+						<Offset x="15" y="-40" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_hideUI" inherits="GameFontNormal" text="Hide UI for Screenshots (not for Achievements)" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="295" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_hideUI" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-5" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="AS_check_Achs" inherits="UICheckButtonTemplate" text="CheckButton1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_hideUI" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="-20" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -18,7 +40,7 @@
 							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="AS_check_Achs" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-7" />
+									<Offset x="0" y="-5" />
 								</Anchor>
 							</Anchors>
 							<Color r="0.75" g="0.75" b="0.75" />
@@ -40,7 +62,7 @@
 							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="AS_check_Levels" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-7" />
+									<Offset x="0" y="-5" />
 								</Anchor>
 							</Anchors>
 							<Color r="0.75" g="0.75" b="0.75" />
@@ -51,7 +73,7 @@
 			<CheckButton name="AS_check_Reps" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_check_Levels" relativePoint="BOTTOMLEFT">
-						<Offset x="0" y="-15" />
+						<Offset x="0" y="-10" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -62,29 +84,7 @@
 							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="AS_check_Reps" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-7" />
-								</Anchor>
-							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
-						</FontString>
-					</Layer>
-				</Layers>
-			</CheckButton>
-			<CheckButton name="AS_check_hideUI" inherits="UICheckButtonTemplate" text="CheckButton2">
-				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="AS_Options_Panel" relativePoint="TOPLEFT">
-						<Offset x="15" y="-55" />
-					</Anchor>
-				</Anchors>
-				<Layers>
-					<Layer level="OVERLAY">
-						<FontString name="AS_fs_hideUI" inherits="GameFontNormal" text="Hide UI for Screenshots (not for Achievements)" justifyH="LEFT">
-							<Size>
-								<AbsDimension x="295" y="20" />
-							</Size>
-							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_hideUI" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-7" />
+									<Offset x="0" y="-5" />
 								</Anchor>
 							</Anchors>
 							<Color r="0.75" g="0.75" b="0.75" />
@@ -95,7 +95,7 @@
 			<CheckButton name="AS_check_bgs" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_check_Reps" relativePoint="BOTTOMLEFT">
-						<Offset x="0" y="-20" />
+						<Offset x="0" y="-10" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -106,7 +106,7 @@
 							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="AS_check_bgs" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-7" />
+									<Offset x="0" y="-5" />
 								</Anchor>
 							</Anchors>
 							<Color r="0.75" g="0.75" b="0.75" />
@@ -131,7 +131,7 @@
 							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="AS_check_arenas" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-7" />
+									<Offset x="0" y="-5" />
 								</Anchor>
 							</Anchors>
 							<Color r="0.75" g="0.75" b="0.75" />
@@ -154,7 +154,7 @@
 							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="AS_check_bgs_wins_only" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-7" />
+									<Offset x="0" y="-5" />
 								</Anchor>
 							</Anchors>
 							<Color r="0.75" g="0.75" b="0.75" />
@@ -177,7 +177,7 @@
 							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="AS_check_arenas_wins_only" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-7" />
+									<Offset x="0" y="-5" />
 								</Anchor>
 							</Anchors>
 							<Color r="0.75" g="0.75" b="0.75" />
@@ -188,6 +188,102 @@
 					<OnClick>AS_auto_check_arenas();</OnClick>
 				</Scripts>
 			</CheckButton> -->
+			
+			<!-- Telkar edit here -->
+			<CheckButton name="AS_check_ShardsOfIllusion" inherits="UICheckButtonTemplate" text="CheckButton4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_bgs" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="-40" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_ShardsOfIllusion" inherits="GameFontNormal" text="Screenshot of |cfff2e699Shards of Illusion|r Gain" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-5" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_uncheck_shard_suboptions();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="AS_check_ShardsOfIllusion_sub_raid" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion" relativePoint="BOTTOMRIGHT" />
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_ShardsOfIllusion_sub_raid" inherits="GameFontNormal" text="Raid Encounter Completion" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion_sub_raid" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-5" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_check_shard_sub_raid();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="AS_check_ShardsOfIllusion_sub_LFG" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion_sub_raid" relativePoint="BOTTOMLEFT" />
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_ShardsOfIllusion_sub_LFG" inherits="GameFontNormal" text="LFG Completion" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion_sub_LFG" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-5" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_check_shard_sub_LFG();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="AS_check_ShardsOfIllusion_sub_arena" inherits="UICheckButtonTemplate" text="CheckButton3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion_sub_LFG" relativePoint="BOTTOMLEFT" />
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_ShardsOfIllusion_sub_arena" inherits="GameFontNormal" text="Arena Completion" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="265" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion_sub_arena" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-5" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AS_auto_check_shard_sub_arena();</OnClick>
+				</Scripts>
+			</CheckButton>
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
@@ -201,7 +297,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="AS_option_fs_myName" inherits="GameFontNormal" text="by Blamdarot" justifyV="BOTTOM" justifyH="RIGHT">
+				<FontString name="AS_option_fs_myName" inherits="GameFontNormal" text="by Blamdarot, Telkar-RG" justifyV="BOTTOM" justifyH="RIGHT">
 					<Size>
 						<AbsDimension x="90" y="20" />
 					</Size>
