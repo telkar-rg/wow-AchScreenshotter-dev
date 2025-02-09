@@ -1,11 +1,13 @@
 ﻿<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="AchScreenshotter.lua" />
-	<Frame name="AS_Options_Frame" inherits="" hidden="true">
+	<Frame name="AS_Options_Frame" inherits="" hidden="true" parent="UIParent">
 		<Size>
-			<AbsDimension x="336" y="216" />
+			<AbsDimension x="335" y="216" />
 		</Size>
 		<Anchors>
-			<Anchor point="CENTER" relativePoint="CENTER" />
+			<Anchor point="CENTER" relativePoint="CENTER">
+				<Offset x="-1" y="0" />
+			</Anchor>
 		</Anchors>
 		<TitleRegion setAllPoints="true">
 			<Size>
@@ -43,8 +45,8 @@
 			</Button>
 			<CheckButton name="AS_check_Achs" inherits="UICheckButtonTemplate" text="CheckButton1">
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="14" y="-71" />
+					<Anchor point="TOPLEFT" relativeTo="AS_Options_Frame" relativePoint="TOPLEFT">
+						<Offset x="15" y="-65" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -65,8 +67,8 @@
 			</CheckButton>
 			<CheckButton name="AS_check_Levels" inherits="UICheckButtonTemplate" text="CheckButton2">
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="14" y="-109" />
+					<Anchor point="TOPLEFT" relativeTo="AS_Options_Frame" relativePoint="TOPLEFT">
+						<Offset x="15" y="-90" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -87,8 +89,8 @@
 			</CheckButton>
 			<CheckButton name="AS_check_Reps" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="14" y="-147" />
+					<Anchor point="TOPLEFT" relativeTo="AS_Options_Frame" relativePoint="TOPLEFT">
+						<Offset x="15" y="-115" />
 					</Anchor>
 				</Anchors>
 				<Layers>
@@ -99,6 +101,28 @@
 							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="AS_check_Reps" relativePoint="TOPRIGHT">
+									<Offset x="0" y="-7" />
+								</Anchor>
+							</Anchors>
+							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="AS_check_hideUI" inherits="UICheckButtonTemplate" text="CheckButton2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_Options_Frame" relativePoint="TOPLEFT">
+						<Offset x="15" y="-140" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_hideUI" inherits="GameFontNormal" text="Hide UI for Screenshots (not for Achievements)" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="295" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AS_check_hideUI" relativePoint="TOPRIGHT">
 									<Offset x="0" y="-7" />
 								</Anchor>
 							</Anchors>
@@ -118,6 +142,14 @@
 						<Anchor point="CENTER" relativeTo="AS_Options_Frame" relativePoint="CENTER">
 							<Offset x="0" y="80" />
 						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="AS_fs_options" inherits="GameFontNormal" text="Options">
+					<Size>
+						<AbsDimension x="270" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="AS_fs_title" relativePoint="BOTTOM" />
 					</Anchors>
 				</FontString>
 				<FontString name="AS_option_fs_myName" inherits="GameFontNormal" text="by Blamdarot" justifyV="BOTTOM" justifyH="RIGHT">
