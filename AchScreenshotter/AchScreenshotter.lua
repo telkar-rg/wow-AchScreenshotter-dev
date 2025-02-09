@@ -37,18 +37,24 @@ end
 -------------------------------------------------------------
 
 local AS_MOD_NAME = "Achievement Screenshotter";
-local AS_MOD_VERSION = "3.1.1";
+local AS_MOD_VERSION = "2.0";
 
 function AchScreens_OnLoad( )
 
 	this:RegisterEvent( "ACHIEVEMENT_EARNED" );
+	this:RegisterEvent( "PLAYER_LEVEL_UP" );
 	print( AS_MOD_NAME, AS_MOD_VERSION, ": Loaded" );
 
 end
 
 function AchScreens_OnEvent( self, event, ... )
-
-	AchScreens__wait(2, Screenshot, ... )
-	--Screenshot();
-
+	
+	if( event == "ACHIEVEMENT_EARNED" ) then
+		AchScreens__wait( 2, Screenshot, ... );
+	elseif( event == "PLAYER_LEVEL_UP" ) then
+		AchScreens__wait( 1, Screenshot, ... );
+	else
+		message( "Achievement Screenshotter is receiving events it does not know how to handle. Please contact the author: blamdarot@yahoo.com" );
+	end
+	
 end

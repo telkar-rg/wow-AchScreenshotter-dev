@@ -20,7 +20,7 @@
 		</Backdrop>
 		<Scripts>
 			<OnLoad>AchScreens_OnLoad();</OnLoad>
-			<OnEvent>AchScreens_OnEvent();</OnEvent>
+			<OnEvent>AchScreens_OnEvent(self,event,...);</OnEvent>
 		</Scripts>
 	</Frame>
 </Ui>
