@@ -1,6 +1,6 @@
 ﻿AS_MOD_NAME = "Achievement Screenshotter";
 AS_MOD_NAME_NO_SPACES = "AchScreenshotter";
-AS_MOD_VERSION = "3.2.0";
+AS_MOD_VERSION = "3.2.1";
 AS_DEBUG = false;
 AS_MAX_NUM_ARENA_TEAMS = 3;
 AS_HORDE_ID = 0;
@@ -20,4 +20,5 @@ AS_DEFAULT_SETTINGS =	{
 	AS_ss_soi_raid = false,
 	AS_ss_soi_lfg = false,
 	AS_ss_soi_arena = false,
+	AS_ss_sound = false,
 };

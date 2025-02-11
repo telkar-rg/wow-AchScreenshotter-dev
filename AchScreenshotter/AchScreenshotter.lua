@@ -192,6 +192,9 @@ function AS_take_screenshot(delay)
 	if( AS_settings.AS_hideui ) then
 		AchScreens__wait( delay, AS_myHide );
 		AchScreens__wait( delay, Screenshot );
+		if AS_ss_sound then
+			AchScreens__wait( delay, function() PlaySoundFile("Interface\\AddOns\\AchScreenshotter\\camera-shutter.mp3") end );
+		end
 		--UIParent:Show(); -- Doesn't work. I suspect it is related to the delay
 		-- funciton I'm using. Until I find a work around, the user will have to
 		-- press Esc after the screenshot is taken.

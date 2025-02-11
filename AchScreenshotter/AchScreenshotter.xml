@@ -7,43 +7,63 @@
 			<CheckButton name="AS_check_hideUI" inherits="UICheckButtonTemplate" text="CheckButton2">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_Options_Panel" relativePoint="TOPLEFT">
-						<Offset x="15" y="-40" />
+						<Offset x="20" y="-40" />
 					</Anchor>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_hideUI" inherits="GameFontNormal" text="Hide UI for Screenshots (not for Achievements)" justifyH="LEFT">
+						<FontString name="AS_fs_hideUI" inherits="GameFontWhite" text="Hide UI for Screenshots (not for Achievements)" justifyH="LEFT">
 							<Size>
-								<AbsDimension x="295" y="20" />
+								<AbsDimension x="300" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_hideUI" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_hideUI" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
 			</CheckButton>
-			<CheckButton name="AS_check_Achs" inherits="UICheckButtonTemplate" text="CheckButton1">
+			<CheckButton name="AS_check_SoundFx" inherits="UICheckButtonTemplate" text="CheckButton2">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_check_hideUI" relativePoint="BOTTOMLEFT">
-						<Offset x="0" y="-20" />
+						<Offset x="0" y="0" />
 					</Anchor>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_Achs" inherits="GameFontNormal" text="Screenshot Achievements" justifyH="LEFT">
+						<FontString name="AS_fs_SoundFx" inherits="GameFontWhite" text="Play Sound Effect on Screenshot" justifyH="LEFT">
 							<Size>
-								<AbsDimension x="265" y="20" />
+								<AbsDimension x="300" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_Achs" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_SoundFx" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						if AS_check_SoundFx:GetChecked() then
+							PlaySoundFile("Interface\\AddOns\\AchScreenshotter\\camera-shutter.mp3")
+						end
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="AS_check_Achs" inherits="UICheckButtonTemplate" text="CheckButton1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AS_check_SoundFx" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="-10" />
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AS_fs_Achs" inherits="GameFontWhite" text="Screenshot Achievements" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="300" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="AS_check_Achs" relativePoint="RIGHT" />
+							</Anchors>
 						</FontString>
 					</Layer>
 				</Layers>
@@ -51,21 +71,18 @@
 			<CheckButton name="AS_check_Levels" inherits="UICheckButtonTemplate" text="CheckButton2">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_check_Achs" relativePoint="BOTTOMLEFT">
-						<Offset x="0" y="-10" />
+						<Offset x="0" y="0" />
 					</Anchor>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_Levels" inherits="GameFontNormal" text="Screenshot Level Ups" justifyH="LEFT">
+						<FontString name="AS_fs_Levels" inherits="GameFontWhite" text="Screenshot Level Ups" justifyH="LEFT">
 							<Size>
-								<AbsDimension x="265" y="20" />
+								<AbsDimension x="300" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_Levels" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_Levels" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
@@ -73,21 +90,18 @@
 			<CheckButton name="AS_check_Reps" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_check_Levels" relativePoint="BOTTOMLEFT">
-						<Offset x="0" y="-10" />
+						<Offset x="0" y="0" />
 					</Anchor>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_Reps" inherits="GameFontNormal" text="Screenshot Reputation Milestones" justifyH="LEFT">
+						<FontString name="AS_fs_Reps" inherits="GameFontWhite" text="Screenshot Reputation Milestones" justifyH="LEFT">
 							<Size>
-								<AbsDimension x="265" y="20" />
+								<AbsDimension x="300" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_Reps" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_Reps" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
@@ -95,21 +109,18 @@
 			<CheckButton name="AS_check_bgs" inherits="UICheckButtonTemplate" text="CheckButton3">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="AS_check_Reps" relativePoint="BOTTOMLEFT">
-						<Offset x="0" y="-10" />
+						<Offset x="0" y="0" />
 					</Anchor>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_bgs" inherits="GameFontNormal" text="Screenshot Battleground Endings" justifyH="LEFT">
+						<FontString name="AS_fs_bgs" inherits="GameFontWhite" text="Screenshot Battleground Endings" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="265" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_bgs" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_bgs" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
@@ -125,7 +136,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_arenas" inherits="GameFontNormal" text="Screenshot Arena Endings" justifyH="LEFT">
+						<FontString name="AS_fs_arenas" inherits="GameFontWhite" text="Screenshot Arena Endings" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="265" y="20" />
 							</Size>
@@ -134,7 +145,6 @@
 									<Offset x="0" y="-5" />
 								</Anchor>
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
@@ -148,16 +158,13 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_bgs_wins_only" inherits="GameFontNormal" text="Screenshot Wins Only" justifyH="LEFT">
+						<FontString name="AS_fs_bgs_wins_only" inherits="GameFontWhite" text="Screenshot Wins Only" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="265" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_bgs_wins_only" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_bgs_wins_only" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
@@ -171,7 +178,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_arenas_wins_only" inherits="GameFontNormal" text="Screenshot Wins Only" justifyH="LEFT">
+						<FontString name="AS_fs_arenas_wins_only" inherits="GameFontWhite" text="Screenshot Wins Only" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="265" y="20" />
 							</Size>
@@ -180,7 +187,6 @@
 									<Offset x="0" y="-5" />
 								</Anchor>
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
@@ -192,22 +198,19 @@
 			<!-- Telkar edit here -->
 			<CheckButton name="AS_check_ShardsOfIllusion" inherits="UICheckButtonTemplate" text="CheckButton4">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="AS_check_bgs" relativePoint="BOTTOMLEFT">
-						<Offset x="0" y="-40" />
+					<Anchor point="TOPRIGHT" relativeTo="AS_check_bgs_wins_only" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="-10" />
 					</Anchor>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_ShardsOfIllusion" inherits="GameFontNormal" text="Screenshot of |cfff2e699Shards of Illusion|r Gain" justifyH="LEFT">
+						<FontString name="AS_fs_ShardsOfIllusion" inherits="GameFontWhite" text="Screenshot of |cfff2e699Shards of Illusion|r Gain" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="265" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_ShardsOfIllusion" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
@@ -221,16 +224,13 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_ShardsOfIllusion_sub_raid" inherits="GameFontNormal" text="Raid Encounter Completion" justifyH="LEFT">
+						<FontString name="AS_fs_ShardsOfIllusion_sub_raid" inherits="GameFontWhite" text="Raid Encounter Completion" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="265" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion_sub_raid" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_ShardsOfIllusion_sub_raid" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
@@ -244,24 +244,18 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_ShardsOfIllusion_sub_LFG" inherits="GameFontNormal" text="LFG Completion" justifyH="LEFT">
+						<FontString name="AS_fs_ShardsOfIllusion_sub_LFG" inherits="GameFontWhite" text="LFG Completion" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="265" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion_sub_LFG" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_ShardsOfIllusion_sub_LFG" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>
-					print("AS_check_ShardsOfIllusion_sub_raid")
-					AS_auto_check_shard_Cleanup();
-					</OnClick>
+					<OnClick>AS_auto_check_shard_Cleanup();</OnClick>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="AS_check_ShardsOfIllusion_sub_arena" inherits="UICheckButtonTemplate" text="CheckButton3">
@@ -270,24 +264,18 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="AS_fs_ShardsOfIllusion_sub_arena" inherits="GameFontNormal" text="Arena (experimental)" justifyH="LEFT">
+						<FontString name="AS_fs_ShardsOfIllusion_sub_arena" inherits="GameFontWhite" text="Arena (experimental)" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="265" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="AS_check_ShardsOfIllusion_sub_arena" relativePoint="TOPRIGHT">
-									<Offset x="0" y="-5" />
-								</Anchor>
+								<Anchor point="LEFT" relativeTo="AS_check_ShardsOfIllusion_sub_arena" relativePoint="RIGHT" />
 							</Anchors>
-							<Color r="0.75" g="0.75" b="0.75" />
 						</FontString>
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>
-					print("AS_check_ShardsOfIllusion_sub_raid")
-					AS_auto_check_shard_Cleanup();
-					</OnClick>
+					<OnClick>AS_auto_check_shard_Cleanup();</OnClick>
 				</Scripts>
 			</CheckButton>
 		</Frames>

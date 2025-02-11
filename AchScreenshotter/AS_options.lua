@@ -27,6 +27,8 @@ function AS_Open_Options()
 	AS_check_ShardsOfIllusion_sub_raid:SetChecked(AS_settings.AS_ss_soi_raid);
 	AS_check_ShardsOfIllusion_sub_LFG:SetChecked(AS_settings.AS_ss_soi_lfg);
 	AS_check_ShardsOfIllusion_sub_arena:SetChecked(AS_settings.AS_ss_soi_arena);
+	
+	AS_check_SoundFx:SetChecked(AS_settings.AS_ss_sound);
 end
 
 function AS_Default_Options()
@@ -57,6 +59,8 @@ function AS_Close_Options()
 	AS_settings.AS_ss_soi_raid = AS_check_ShardsOfIllusion_sub_raid:GetChecked();
 	AS_settings.AS_ss_soi_lfg = AS_check_ShardsOfIllusion_sub_LFG:GetChecked();
 	AS_settings.AS_ss_soi_arena = AS_check_ShardsOfIllusion_sub_arena:GetChecked();
+	
+	AS_settings.AS_ss_sound = AS_check_SoundFx:GetChecked();
 	
 	if( AS_settngs.AS_hideui ) then
 		print( "Achievement Screenshotter: press Esc to show the UI after the screenshot is taken." );
