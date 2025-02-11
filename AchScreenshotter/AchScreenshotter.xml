@@ -212,7 +212,10 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>AS_auto_uncheck_shard_suboptions();</OnClick>
+					<OnClick>
+					print("AS_check_ShardsOfIllusion")
+					AS_auto_uncheck_shard_suboptions();
+					</OnClick>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="AS_check_ShardsOfIllusion_sub_raid" inherits="UICheckButtonTemplate" text="CheckButton3">
@@ -235,7 +238,10 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>AS_auto_check_shard_sub_raid();</OnClick>
+					<OnClick>
+					print("AS_check_ShardsOfIllusion_sub_raid")
+					AS_auto_check_shard_Cleanup();
+					</OnClick>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="AS_check_ShardsOfIllusion_sub_LFG" inherits="UICheckButtonTemplate" text="CheckButton3">
@@ -258,7 +264,10 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>AS_auto_check_shard_sub_LFG();</OnClick>
+					<OnClick>
+					print("AS_check_ShardsOfIllusion_sub_raid")
+					AS_auto_check_shard_Cleanup();
+					</OnClick>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="AS_check_ShardsOfIllusion_sub_arena" inherits="UICheckButtonTemplate" text="CheckButton3">
@@ -281,7 +290,10 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>AS_auto_check_shard_sub_arena();</OnClick>
+					<OnClick>
+					print("AS_check_ShardsOfIllusion_sub_raid")
+					AS_auto_check_shard_Cleanup();
+					</OnClick>
 				</Scripts>
 			</CheckButton>
 		</Frames>

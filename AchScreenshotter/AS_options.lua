@@ -23,6 +23,10 @@ function AS_Open_Options()
 	AS_check_bgs_wins_only:SetChecked(AS_settings.AS_ss_bgs_wins_only);
 	--AS_check_arenas:SetChecked(AS_settings.AS_ss_arenas);
 	--AS_check_arenas_wins_only:SetChecked(AS_settings.AS_ss_arenas_wins_only);
+	AS_check_ShardsOfIllusion:SetChecked(AS_settings.AS_ss_soi_general);
+	AS_check_ShardsOfIllusion_sub_raid:SetChecked(AS_settings.AS_ss_soi_raid);
+	AS_check_ShardsOfIllusion_sub_LFG:SetChecked(AS_settings.AS_ss_soi_lfg);
+	AS_check_ShardsOfIllusion_sub_arena:SetChecked(AS_settings.AS_ss_soi_arena);
 end
 
 function AS_Default_Options()
@@ -46,8 +50,8 @@ function AS_Close_Options()
 	AS_settings.AS_ss_reps = AS_check_Reps:GetChecked();
 	AS_settings.AS_ss_bgs = AS_check_bgs:GetChecked();
 	AS_settings.AS_ss_bgs_wins_only = AS_check_bgs_wins_only:GetChecked();
-	AS_settings.AS_ss_arenas = AS_check_arenas:GetChecked();
-	AS_settings.AS_ss_arenas_wins_only = AS_check_arenas_wins_only:GetChecked();
+	-- AS_settings.AS_ss_arenas = AS_check_arenas:GetChecked();
+	-- AS_settings.AS_ss_arenas_wins_only = AS_check_arenas_wins_only:GetChecked();
 	
 	AS_settings.AS_ss_soi_general = AS_check_ShardsOfIllusion:GetChecked()
 	AS_settings.AS_ss_soi_raid = AS_check_ShardsOfIllusion_sub_raid:GetChecked();
@@ -85,49 +89,44 @@ end
 
 -- Telkar edit here
 function AS_auto_uncheck_shard_suboptions()
-	if( not AS_check_ShardsOfIllusion:GetChecked() ) then
-		AS_check_ShardsOfIllusion_sub_raid:SetChecked(false);
-		AS_check_ShardsOfIllusion_sub_LFG:SetChecked(false);
-		AS_check_ShardsOfIllusion_sub_arena:SetChecked(false);
-	elseif not (AS_check_ShardsOfIllusion_sub_raid:GetChecked() or 
-		AS_check_ShardsOfIllusion_sub_LFG:GetChecked() or 
-		AS_check_ShardsOfIllusion_sub_arena:GetChecked()
-	) then
-		AS_check_ShardsOfIllusion_sub_raid:SetChecked(true);
-		AS_check_ShardsOfIllusion_sub_LFG:SetChecked(true);
-		AS_check_ShardsOfIllusion_sub_arena:SetChecked(true);
+
+	if( AS_DEBUG ) then
+		print( "AS_auto_uncheck_shard_suboptions()..." );
+	end
+	
+	if AS_check_ShardsOfIllusion:GetChecked() then
+		if not AS_check_ShardsOfIllusion_sub_raid:GetChecked() then
+			AS_check_ShardsOfIllusion_sub_raid:SetChecked(true);
+		end
+		if not AS_check_ShardsOfIllusion_sub_LFG:GetChecked() then
+			AS_check_ShardsOfIllusion_sub_LFG:SetChecked(true);
+		end
+		if not AS_check_ShardsOfIllusion_sub_arena:GetChecked() then
+			AS_check_ShardsOfIllusion_sub_arena:SetChecked(true);
+		end
+	else
+		if AS_check_ShardsOfIllusion_sub_raid:GetChecked() then
+			AS_check_ShardsOfIllusion_sub_raid:SetChecked(false);
+		end
+		if AS_check_ShardsOfIllusion_sub_LFG:GetChecked() then
+			AS_check_ShardsOfIllusion_sub_LFG:SetChecked(false);
+		end
+		if AS_check_ShardsOfIllusion_sub_arena:GetChecked() then
+			AS_check_ShardsOfIllusion_sub_arena:SetChecked(false);
+		end
 	end
 end
 
-function AS_auto_check_shard_sub_raid()
-	if( AS_check_ShardsOfIllusion_sub_raid:GetChecked() and not AS_check_ShardsOfIllusion:GetChecked() ) then
-		AS_check_ShardsOfIllusion:SetChecked(true);
-	elseif not (AS_check_ShardsOfIllusion_sub_raid:GetChecked() or 
-		AS_check_ShardsOfIllusion_sub_LFG:GetChecked() or 
-		AS_check_ShardsOfIllusion_sub_arena:GetChecked()
-	) then
-		AS_check_ShardsOfIllusion:SetChecked(false);
-	end
-end
-
-function AS_auto_check_shard_sub_LFG()
-	if( AS_check_ShardsOfIllusion_sub_LFG:GetChecked() and not AS_check_ShardsOfIllusion:GetChecked() ) then
-		AS_check_ShardsOfIllusion:SetChecked(true);
-	elseif not (AS_check_ShardsOfIllusion_sub_raid:GetChecked() or 
-		AS_check_ShardsOfIllusion_sub_LFG:GetChecked() or 
-		AS_check_ShardsOfIllusion_sub_arena:GetChecked()
-	) then
-		AS_check_ShardsOfIllusion:SetChecked(false);
-	end
-end
-
-function AS_auto_check_shard_sub_arena()
-	if( AS_check_ShardsOfIllusion_sub_arena:GetChecked() and not AS_check_ShardsOfIllusion:GetChecked() ) then
-		AS_check_ShardsOfIllusion:SetChecked(true);
-	elseif not (AS_check_ShardsOfIllusion_sub_raid:GetChecked() or 
-		AS_check_ShardsOfIllusion_sub_LFG:GetChecked() or 
-		AS_check_ShardsOfIllusion_sub_arena:GetChecked()
-	) then
-		AS_check_ShardsOfIllusion:SetChecked(false);
+function AS_auto_check_shard_Cleanup()
+	local cnt = 0
+	local cntMax = 3
+	if AS_check_ShardsOfIllusion_sub_raid:GetChecked() then cnt = cnt+1 end
+	if AS_check_ShardsOfIllusion_sub_LFG:GetChecked() then cnt = cnt+1 end
+	if AS_check_ShardsOfIllusion_sub_arena:GetChecked() then cnt = cnt+1 end
+	
+	if cnt == 0 and AS_check_ShardsOfIllusion:GetChecked() then
+		AS_check_ShardsOfIllusion:SetChecked(false)
+	elseif cnt > 0 and not AS_check_ShardsOfIllusion:GetChecked() then
+		AS_check_ShardsOfIllusion:SetChecked(true)
 	end
 end

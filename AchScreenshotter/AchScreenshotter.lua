@@ -125,14 +125,14 @@ function AS_chat_msg_system( msg )
 		return
 	end
 	
-	if (AS_settings.AS_ss_soi_general and string.find( msg, TOKENS_SHARDS_MSG_GAINED) ) then
-		local _, iType = GetInstanceInfo()
+	if (AS_settings.AS_ss_soi_raid or AS_settings.AS_ss_soi_lfg or AS_settings.AS_ss_soi_arena) and string.find( msg, TOKENS_SHARDS_MSG_GAINED) then
+		local _, iType = IsInInstance()
 		if AS_settings.AS_ss_soi_raid and iType=="raid" then
-			
+			AS_take_screenshot(1);
 		elseif AS_settings.AS_ss_soi_lfg and iType=="party" then
-			
+			AS_take_screenshot(1);
 		elseif AS_settings.AS_ss_soi_arena and iType=="arena" then
-			
+			AS_take_screenshot(1);
 		end
 	end
 end
