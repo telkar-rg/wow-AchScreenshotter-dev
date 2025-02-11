@@ -1,7 +1,7 @@
-## Title: Achievement Screenshotter (3.2.0)
+## Title: Achievement Screenshotter (3.2.1)
 ## Notes: Takes screenshots at significant ingame events
 ## Interface: 30300
-## Version: 3.2.0
+## Version: 3.2.1
 ## Author: Blamdarot, Telkar-RG
 ## SavedVariablesPerCharacter: AS_settings
 
