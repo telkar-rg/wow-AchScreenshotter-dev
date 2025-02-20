@@ -14,7 +14,7 @@ function AS_Open_Options()
 		print( "AS_Open_Options()..." );
 	end
 
-	AS_fs_title:SetText( AS_MOD_NAME .. " v." .. AS_MOD_VERSION );
+	AS_fs_title:SetText( AS_MOD_NAME .. " |cFF80FFFFv." .. AS_MOD_VERSION .."|r");
 	
 	AS_check_hideUI:SetChecked(AS_settings.AS_hideui);
 	AS_check_SoundFx:SetChecked(AS_settings.AS_ss_sound);

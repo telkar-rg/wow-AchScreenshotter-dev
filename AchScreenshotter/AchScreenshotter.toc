@@ -1,4 +1,4 @@
-## Title: Achievement Screenshotter (3.2.1)
+## Title: Achievement Screenshotter (|cFF80FFFF3.2.1|r)
 ## Notes: Takes screenshots at significant ingame events
 ## Interface: 30300
 ## Version: 3.2.1
