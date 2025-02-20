@@ -45,8 +45,10 @@ local LOCALE = GetLocale()
 local pattern_rep = FACTION_STANDING_CHANGED:gsub("%%%d?%$?s",".+")
 
 local TOKENS_SHARDS_MSG_GAINED = "^You receive (%d+) Shards of Illusion"
+local TOKENS_SHARDS_MSG_MAX = "^You have already reached the limit and have not received any Shards of Illusion"
 if LOCALE == "deDE" then
 	TOKENS_SHARDS_MSG_GAINED = "^Ihr erhaltet (%d+) Splitter der Illusion"
+	TOKENS_SHARDS_MSG_MAX = "^Ihr habt bereits das Limit erreicht und keine Splitter der Illusion erhalten"
 end
 
 
@@ -125,14 +127,16 @@ function AS_chat_msg_system( msg )
 		return
 	end
 	
-	if (AS_settings.AS_ss_soi_raid or AS_settings.AS_ss_soi_lfg or AS_settings.AS_ss_soi_arena) and string.find( msg, TOKENS_SHARDS_MSG_GAINED) then
-		local _, iType = IsInInstance()
-		if AS_settings.AS_ss_soi_raid and iType=="raid" then
-			AS_take_screenshot(1);
-		elseif AS_settings.AS_ss_soi_lfg and iType=="party" then
-			AS_take_screenshot(1);
-		elseif AS_settings.AS_ss_soi_arena and iType=="arena" then
-			AS_take_screenshot(1);
+	if (AS_settings.AS_ss_soi_raid or AS_settings.AS_ss_soi_lfg or AS_settings.AS_ss_soi_arena) then
+		if string.find( msg, TOKENS_SHARDS_MSG_GAINED) or string.find( msg, TOKENS_SHARDS_MSG_MAX) then
+			local _, iType = IsInInstance()
+			if AS_settings.AS_ss_soi_raid and iType=="raid" then
+				AS_take_screenshot(1);
+			elseif AS_settings.AS_ss_soi_lfg and iType=="party" then
+				AS_take_screenshot(1);
+			elseif AS_settings.AS_ss_soi_arena and iType=="arena" then
+				AS_take_screenshot(1);
+			end
 		end
 	end
 end
@@ -192,14 +196,17 @@ function AS_take_screenshot(delay)
 	if( AS_settings.AS_hideui ) then
 		AchScreens__wait( delay, AS_myHide );
 		AchScreens__wait( delay, Screenshot );
-		if AS_ss_sound then
-			AchScreens__wait( delay, function() PlaySoundFile("Interface\\AddOns\\AchScreenshotter\\camera-shutter.mp3") end );
+		if AS_settings.AS_ss_sound then
+			AchScreens__wait( delay, PlaySoundFile,"Interface\\AddOns\\AchScreenshotter\\camera-shutter.mp3" );
 		end
 		--UIParent:Show(); -- Doesn't work. I suspect it is related to the delay
 		-- funciton I'm using. Until I find a work around, the user will have to
 		-- press Esc after the screenshot is taken.
 	else
 		AchScreens__wait( delay, Screenshot );
+		if AS_settings.AS_ss_sound then
+			AchScreens__wait( delay, PlaySoundFile,"Interface\\AddOns\\AchScreenshotter\\camera-shutter.mp3" );
+		end
 	end
 end
 
