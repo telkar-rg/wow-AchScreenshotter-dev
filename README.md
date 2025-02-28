@@ -5,6 +5,10 @@ Aims to preserve the original release by [Blamdarot](https://web.archive.org/web
 ![Image of the interface](https://raw.githubusercontent.com/telkar-rg/wow-AchScreenshotter-dev/refs/heads/main/_IMG/1.png)
 
 ## Changes
+### [AchScreenshotter v3.2.1](https://github.com/telkar-rg/wow-AchScreenshotter-dev/releases/tag/v3.2.1)
+- fixed Option selection
+- added "Camera Click" sfx
+- made Setting chage more intuitive
 ### [AchScreenshotter v3.2](https://github.com/telkar-rg/wow-AchScreenshotter-dev/releases/tag/v3.2)
 - Fixed detection of Repuation Milestone
 - Added detection of Shards of Illusion Gain
